@@ -3,9 +3,9 @@ interface HomeProps {
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  // Manejar tanto Promise como objeto síncrono
+  // Handle both Promise and synchronous object
   const paramsData = searchParams instanceof Promise ? await searchParams : searchParams;
-  // Convertir searchParams a un objeto plano para facilitar el manejo
+  // Convert searchParams to a flat object for easier handling
   const params = Object.entries(paramsData).reduce(
     (acc, [key, value]) => {
       acc[key] = Array.isArray(value) ? value.join(", ") : value || "";
@@ -24,7 +24,7 @@ export default async function Home({ searchParams }: HomeProps) {
             ReferralRock POC
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400">
-            Visualizador de parámetros de consulta (Query Parameters)
+            Query Parameters Viewer
           </p>
         </div>
 
@@ -47,14 +47,14 @@ export default async function Home({ searchParams }: HomeProps) {
                 </svg>
               </div>
               <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-                No hay parámetros en la URL
+                No parameters in URL
               </h2>
               <p className="text-zinc-600 dark:text-zinc-400 mb-6">
-                Agrega parámetros de consulta a la URL para verlos aquí.
+                Add query parameters to the URL to see them here.
               </p>
               <div className="bg-zinc-100 dark:bg-zinc-700 rounded-lg p-4 text-left inline-block">
                 <p className="text-sm font-mono text-zinc-800 dark:text-zinc-200">
-                  Ejemplo: <span className="text-blue-600 dark:text-blue-400">/?campaign=summer2024&referrer=john&amount=100</span>
+                  Example: <span className="text-blue-600 dark:text-blue-400">/?campaign=summer2024&referrer=john&amount=100</span>
                 </p>
               </div>
             </div>
@@ -63,7 +63,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700 overflow-hidden">
             <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
               <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-                Parámetros recibidos ({Object.keys(params).length})
+                Received Parameters ({Object.keys(params).length})
               </h2>
             </div>
             <div className="overflow-x-auto">
@@ -71,10 +71,10 @@ export default async function Home({ searchParams }: HomeProps) {
                 <thead className="bg-zinc-100 dark:bg-zinc-900">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider border-b border-zinc-200 dark:border-zinc-700">
-                      Parámetro
+                      Parameter
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider border-b border-zinc-200 dark:border-zinc-700">
-                      Valor
+                      Value
                     </th>
                   </tr>
                 </thead>
@@ -95,7 +95,7 @@ export default async function Home({ searchParams }: HomeProps) {
                       </td>
                       <td className="px-6 py-4">
                         <span className="text-sm text-zinc-700 dark:text-zinc-300 break-all">
-                          {value || <span className="text-zinc-400 italic">(vacío)</span>}
+                          {value || <span className="text-zinc-400 italic">(empty)</span>}
                         </span>
                       </td>
                     </tr>
@@ -105,7 +105,7 @@ export default async function Home({ searchParams }: HomeProps) {
             </div>
             <div className="px-6 py-4 bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-700">
               <div className="text-xs text-zinc-500 dark:text-zinc-400">
-                <p className="mb-2">Parámetros en formato URL:</p>
+                <p className="mb-2">Parameters in URL format:</p>
                 <span className="font-mono text-zinc-700 dark:text-zinc-300 break-all block bg-zinc-100 dark:bg-zinc-800 p-2 rounded">
                   {Object.entries(params)
                     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
@@ -118,12 +118,12 @@ export default async function Home({ searchParams }: HomeProps) {
 
         <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
           <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
-            ℹ️ Información
+            ℹ️ Information
           </h3>
           <p className="text-sm text-blue-800 dark:text-blue-200">
-            Esta página está diseñada para recibir y visualizar todos los parámetros de consulta
-            que ReferralRock envía mediante query parameters. Simplemente agrega los parámetros
-            a la URL y aparecerán automáticamente en la tabla.
+            This page is designed to receive and visualize all query parameters
+            that ReferralRock sends via query parameters. Simply add the parameters
+            to the URL and they will automatically appear in the table.
           </p>
         </div>
       </main>
